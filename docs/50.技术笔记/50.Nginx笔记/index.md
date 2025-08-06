@@ -1,0 +1,102 @@
+## Ubuntu安装Nginx
+
+### 安装前注意事项
+
+首先我们来安装 Nginx，但是，一般来说刚刚购买的阿里云服务器会预装 Apache，我们没有特别需要的话，是用不到的，可以把它删了：
+
+```shell
+# Ubuntu
+sudo service apache2 stop
+sudo update-rc.d -f apache2 remove
+sudo apt-get remove apache2
+# 删完 Apache，用命令 sudo apt-get update 更新一下包列表
+```
+
+### 安装 Nginx
+
+```shell
+sudo apt-get install nginx
+```
+
+### 检查下 Nginx 的版本
+
+```shell
+nginx -v
+```
+
+## CentOS安装Nginx
+
+### 下载 Nginx
+
+```shell
+wget https://nginx.org/download/nginx-1.21.1.tar.gz
+```
+
+### 安装必要库
+
+在Linux下安装Nginx还需要安装4个库，分别是：gcc、PCRE、zlib、openssl
+
+```shell
+yum install -y gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel
+```
+
+### 解压
+
+```shell
+tar -zxvf nginx-1.21.1.tar.gz
+```
+
+### 配置
+
+```shell
+cd nginx-1.21.1
+# 配置
+./configure --prefix=/home/soft/nginx
+# 带参数配置（酌情选择配置）
+#./configure --prefix=/home/soft/nginx \
+#--with-http_gzip_static_module \
+#--http-client-body-temp-path=/var/temp/nginx/client \
+#--http-proxy-temp-path=/var/temp/nginx/proxy \
+#--http-fastcgi-temp-path=/var/temp/nginx/fastcgi \
+#--http-uwsgi-temp-path=/var/temp/nginx/uwsgi \
+#--http-scgi-temp-path=/var/temp/nginx/scgi
+```
+
+### 编译安装 Nginx
+
+```shell
+make
+make install
+```
+
+### 添加Nginx安装目录到系统环境变量
+
+- 创建并打开文件nginx.sh
+
+```shell
+vi /etc/profile.d/nginx.sh
+```
+
+- 添加内容如下:
+
+```shell
+export PATH=$PATH:/home/soft/nginx/sbin
+```
+
+- 保存并退出
+
+```shell
+:wq!
+```
+
+- 更新环境变量
+
+```shell
+source /etc/profile
+```
+
+### 查看nginx版本
+
+```shell
+nginx -v
+```
