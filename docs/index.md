@@ -18,7 +18,7 @@ features:
     details: 全栈工程师，多年企业级系统平台PHP开发，熟悉Vue，base深圳
   - icon: 🔑
     title: 联系方式
-    details: 邮箱：732722725@qq.com <br> 微信：lintonggg (注明来意)
+    details: 邮箱：siushin@163.com <br> 微信：lintonggg (注明来意)
   - icon: 📦
     title: 恰饭
     details: 后期接入广告联盟（合作请私信）
