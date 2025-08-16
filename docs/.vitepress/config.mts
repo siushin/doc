@@ -221,6 +221,14 @@ export default defineConfig({
                 ]
             },
             {
+                text: "开源项目",
+                items: [
+                    { text: "laravel-api", link: "https://github.com/siushin/laravel-api" },
+                    { text: "laravel-tool", link: "https://github.com/siushin/laravel-tool" },
+                    { text: "php-util", link: "https://github.com/siushin/php-util" },
+                ],
+            },
+            {
                 text: "网站导航",
                 items: [
                     { text: "归档页", link: "/archives" },
