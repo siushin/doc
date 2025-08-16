@@ -1,3 +1,11 @@
+---
+date: 2025-08-16 13:02:11
+categories:
+  - Nginx
+tags:
+  - Nginx
+---
+
 ## 部署报错
 
 ### 找不到nginx.pid

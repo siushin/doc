@@ -1,3 +1,11 @@
+---
+date: 2025-08-16 13:02:11
+categories:
+  - Nginx
+tags:
+  - Nginx
+---
+
 ## Nginx常用命令
 
 ### 查看nginx版本

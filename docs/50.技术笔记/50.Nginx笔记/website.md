@@ -1,3 +1,11 @@
+---
+date: 2025-08-16 13:02:11
+categories:
+  - Nginx
+tags:
+  - Nginx
+---
+
 ## 站点配置
 
 ### 定位配置文件nginx.conf

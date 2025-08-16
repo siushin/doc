@@ -1,3 +1,12 @@
+---
+date: 2025-08-16 13:02:11
+permalink: /tech/nginx
+categories:
+  - Nginx
+tags:
+  - Nginx
+---
+
 ## Ubuntu安装Nginx
 
 ### 安装前注意事项
