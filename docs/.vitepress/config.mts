@@ -227,16 +227,7 @@ export default defineConfig({
                     { text: "laravel-tool", link: "https://github.com/siushin/laravel-tool" },
                     { text: "php-util", link: "https://github.com/siushin/php-util" },
                 ],
-            },
-            {
-                text: "网站导航",
-                items: [
-                    { text: "归档页", link: "/archives" },
-                    { text: "清单页", link: "/articleOverview" },
-                    { text: "分类页", link: "/categories" },
-                    { text: "标签页", link: "/tags" },
-                ],
-            },
+            }
         ],
 
         socialLinks: [
