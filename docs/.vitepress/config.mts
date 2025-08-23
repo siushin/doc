@@ -111,6 +111,11 @@ export default defineConfig({
     cleanUrls: false,
     lastUpdated: true,
     lang: "zh-CN",
+    vite: {
+        server: {
+            allowedHosts: ['www.siushin.com', 'localhost', '127.0.0.1']
+        }
+    },
     head: [
         ["link", { rel: "icon", type: "image/svg+xml", href: "/teek-logo-mini.svg" }],
         ["link", { rel: "icon", type: "image/png", href: "/teek-logo-mini.png" }],
