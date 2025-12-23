@@ -18,13 +18,14 @@ function shuffleArray(array) {
 }
 
 const banner_description = [
-    "故事由我书写，旅程由你见证，传奇由她聆听 —— 来自 Young Kbt",
-    "积跬步以至千里，致敬每个爱学习的你 —— 来自 Evan Xu",
-    "这世界上一直存在一条路，让我们的能力从平庸到杰出，这条路漫长而且艰辛，只有少数人愿意走下去。所以，优秀的人永远是少数。——MacTalk·人生元编程",
+    "Be water my friend -- Bruce Lee",
+    "故事由我书写，旅程由你见证，传奇由她聆听 —— Young Kbt",
+    "积跬步以至千里，致敬每个爱学习的你 —— Evan Xu",
+    "这世界上一直存在一条路，让我们的能力从平庸到杰出，这条路漫长而且艰辛，只有少数人愿意走下去。所以，优秀的人永远是少数。 —— MacTalk·人生元编程",
     "不要试图从头开始，站在巨人的肩膀上。",
     "没有人有义务必须透过连你自己都毫不在意的邋遢外表，去发现你优秀的内在。",
     "种一棵树最好的时间是十年前，其次是现在。",
-    "那些杀不死我的，会使我更强大。--尼采",
+    "那些杀不死我的，会使我更强大。 -- 尼采",
 ]
 
 // Teek 主题配置
@@ -117,8 +118,7 @@ export default defineConfig({
         }
     },
     head: [
-        ["link", { rel: "icon", type: "image/svg+xml", href: "/teek-logo-mini.svg" }],
-        ["link", { rel: "icon", type: "image/png", href: "/teek-logo-mini.png" }],
+        ["link", { rel: "icon", type: "image/png", href: "/src/pokemon.png" }],
         ["meta", { property: "og:type", content: "website" }],
         ["meta", { property: "og:locale", content: "zh-CN" }],
         ["meta", { property: "og:title", content: "小新博客" }],
@@ -176,6 +176,7 @@ export default defineConfig({
         },
     },
     themeConfig: {
+        logo: "/src/pokemon.png",
         darkModeSwitchLabel: "主题",
         sidebarMenuLabel: "菜单",
         returnToTopLabel: "返回顶部",
@@ -190,67 +191,62 @@ export default defineConfig({
         },
         nav: [
             { text: '首页', link: '/' },
-            { text: "Go笔记", link: "/go/intro", activeMatch: "/10.Go初级入门/", },
-            { text: 'Python笔记', link: "/python/intro", activeMatch: "/10.Python基础知识/", },
+            { text: 'AI笔记', link: '/ai/guide', activeMatch: "/ai/" },
+            { text: "Go笔记", link: "/go/intro", activeMatch: "/go/" },
             {
                 text: 'PHP笔记',
                 items: [
-                    { text: 'PHP基础知识', link: '/php/intro', activeMatch: "/1.序言/", },
-                    { text: 'PHP精选文章', link: '/php/article', activeMatch: "/10.PHP精选文章/", },
-                    { text: 'Laravel', link: '/php/laravel', activeMatch: "/10.Laravel基础知识/", },
-                    { text: 'Swoole', link: '/php/swoole', activeMatch: "/10.Swoole笔记/", },
-                    { text: 'Hyperf', link: '/php/Hyperf', activeMatch: "/10.Hyperf笔记/", },
-                    { text: 'workerman', link: '/php/workerman', activeMatch: "/10.序言/", },
-                    { text: 'GatewayWorker', link: '/php/GatewayWorker', activeMatch: "/10.官方问答/", },
-                    { text: 'webman', link: '/php/webman', activeMatch: "/10.官方问答/", },
-                    { text: 'ThinkPHP', link: '/php/thinkphp', activeMatch: "/10.ThinkPHP/", },
-                    { text: 'Composer笔记', link: '/php/composer', activeMatch: "/10.常用命令/", },
+                    { text: 'PHP基础知识', link: '/php/intro', activeMatch: "/php/intro" },
+                    { text: 'PHP精选文章', link: '/php/article', activeMatch: "/php/article" },
+                    { text: 'Laravel', link: '/php/laravel', activeMatch: "/php/laravel" },
+                    { text: 'Swoole', link: '/php/swoole', activeMatch: "/php/swoole" },
+                    { text: 'Hyperf', link: '/php/Hyperf', activeMatch: "/php/Hyperf" },
+                    { text: 'workerman', link: '/php/workerman', activeMatch: "/php/workerman" },
+                    { text: 'GatewayWorker', link: '/php/GatewayWorker', activeMatch: "/php/GatewayWorker" },
+                    { text: 'webman', link: '/php/webman', activeMatch: "/php/webman" },
+                    { text: 'ThinkPHP', link: '/php/thinkphp', activeMatch: "/php/thinkphp" },
+                    { text: 'Composer笔记', link: '/php/composer', activeMatch: "/php/composer" },
                 ]
             },
             {
                 text: '前端笔记',
                 items: [
-                    { text: 'Vue笔记', link: '/frontend/vue', activeMatch: "/10.Vue文章/", },
-                    { text: 'React笔记', link: '/frontend/react', activeMatch: "/10.序言/", },
-                    { text: 'uni-app笔记', link: '/frontend/uniapp', activeMatch: "/10.插件/", },
-                    { text: 'JavaScript笔记', link: '/frontend/js', activeMatch: "/10.基础知识/", },
-                    { text: 'NodeJS笔记', link: '/frontend/nodejs', activeMatch: "/10.NodeJS命令/", },
-                    { text: 'HTML笔记', link: '/frontend/html', activeMatch: "/10.HTML笔记/", },
-                    { text: 'CSS笔记', link: '/frontend/css', activeMatch: "/10.CSS笔记/", },
-                    { text: 'Typescript笔记', link: '/frontend/course', activeMatch: "/10.Vue3 + Typescript 从0到1开发通用基础组件/", },
+                    { text: 'Vue笔记', link: '/frontend/vue', activeMatch: "/frontend/vue" },
+                    { text: 'React笔记', link: '/frontend/react', activeMatch: "/frontend/react" },
+                    { text: 'uni-app笔记', link: '/frontend/uniapp', activeMatch: "/frontend/uniapp" },
+                    { text: 'JavaScript笔记', link: '/frontend/js', activeMatch: "/frontend/js" },
+                    { text: 'NodeJS笔记', link: '/frontend/nodejs', activeMatch: "/frontend/nodejs" },
+                    { text: 'Typescript笔记', link: '/frontend/course', activeMatch: "/frontend/course" },
                 ]
             },
             {
                 text: '技术笔记',
                 items: [
-                    { text: 'Linux笔记', link: '/tech/linux', activeMatch: "/10.基本命令/", },
-                    { text: 'Docker笔记', link: '/tech/docker', activeMatch: "/10.Docker命令大全/", },
-                    { text: 'Git文档', link: '/tech/git', activeMatch: "/10.常用命令/", },
-                    { text: 'MySQL笔记', link: '/tech/mysql', activeMatch: "/10.MySQL笔记/", },
-                    { text: 'Nginx笔记', link: '/tech/nginx', activeMatch: "/10.Nginx安装/", },
-                    { text: 'Ansible快速入门', link: '/tech/ansible', activeMatch: "/10.序言/", },
+                    { text: 'Linux笔记', link: '/tech/linux', activeMatch: "/tech/linux" },
+                    { text: 'Docker笔记', link: '/tech/docker', activeMatch: "/tech/docker" },
+                    { text: 'Git文档', link: '/tech/git', activeMatch: "/tech/git" },
+                    { text: 'MySQL笔记', link: '/tech/mysql', activeMatch: "/tech/mysql" },
+                    { text: 'Nginx笔记', link: '/tech/nginx', activeMatch: "/tech/nginx" },
                 ]
             },
             {
                 text: '效率工具',
                 items: [
-                    { text: '影刀RPA', link: '/software/yingdao', activeMatch: "/10.影刀RPA案例/", },
-                    { text: 'AI知识', link: '/software/AI', activeMatch: "/10.AI序言/", },
-                    { text: '软件工具', link: '/software/app', activeMatch: "/10.软件工具/", },
+                    { text: '影刀RPA', link: '/software/yingdao', activeMatch: "/software/yingdao" },
+                    { text: '软件工具', link: '/software/app', activeMatch: "/software/app" },
                 ]
             },
             {
                 text: '精选系列',
                 items: [
-                    { text: '开源项目', link: '/star/open-source', activeMatch: "/10.开源项目/", },
-                    { text: '技术文档（书籍）', link: '/star/book', activeMatch: "/20.技术文档（书籍）/", },
-                    { text: '关于技术、知识、播客', link: '/star/website', activeMatch: "/30.关于技术、知识、播客/", },
-                    { text: '关于软件、效率工具、资源库', link: '/star/soft', activeMatch: "/40.关于软件、效率工具、资源库/", },
-                    { text: '使用技巧（技术相关）', link: '/star/skill', activeMatch: "/50.使用技巧（技术相关）/", },
-                    { text: 'Linux技巧', link: '/star/Linux', activeMatch: "/60.Linux技巧/", },
-                    { text: 'Windows技巧', link: '/star/Windows', activeMatch: "/70.Windows技巧/", },
-                    { text: '视频教程', link: '/star/video', activeMatch: "/80.视频教程/", },
-                    { text: '灵感创意', link: '/star/idea', activeMatch: "/10.需求收集/", },
+                    { text: '开源项目', link: '/star/open-source', activeMatch: "/star/open-source" },
+                    { text: '技术文档（书籍）', link: '/star/book', activeMatch: "/star/book" },
+                    { text: '关于技术、知识、播客', link: '/star/website', activeMatch: "/star/website" },
+                    { text: '关于软件、效率工具、资源库', link: '/star/soft', activeMatch: "/star/soft" },
+                    { text: '使用技巧（技术相关）', link: '/star/skill', activeMatch: "/star/skill" },
+                    { text: 'Linux技巧', link: '/star/Linux', activeMatch: "/star/Linux" },
+                    { text: 'Windows技巧', link: '/star/Windows', activeMatch: "/star/Windows" },
+                    { text: '视频教程', link: '/star/video', activeMatch: "/star/video" },
                 ]
             },
             {
@@ -259,6 +255,7 @@ export default defineConfig({
                     { text: "laravel-api", link: "https://github.com/siushin/laravel-api" },
                     { text: "laravel-tool", link: "https://github.com/siushin/laravel-tool" },
                     { text: "php-util", link: "https://github.com/siushin/php-util" },
+                    { text: "GPAdmin", link: "https://github.com/siushin/GPAdmin" },
                 ],
             }
         ],
