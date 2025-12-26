@@ -198,13 +198,13 @@ export default defineConfig({
                 items: [
                     { text: 'PHP基础知识', link: '/php/intro', activeMatch: "/php/intro" },
                     { text: 'PHP精选文章', link: '/php/article', activeMatch: "/php/article" },
+                    { text: 'ThinkPHP', link: '/php/thinkphp', activeMatch: "/php/thinkphp" },
                     { text: 'Laravel', link: '/php/laravel', activeMatch: "/php/laravel" },
                     { text: 'Swoole', link: '/php/swoole', activeMatch: "/php/swoole" },
                     { text: 'Hyperf', link: '/php/Hyperf', activeMatch: "/php/Hyperf" },
                     { text: 'workerman', link: '/php/workerman', activeMatch: "/php/workerman" },
                     { text: 'GatewayWorker', link: '/php/GatewayWorker', activeMatch: "/php/GatewayWorker" },
                     { text: 'webman', link: '/php/webman', activeMatch: "/php/webman" },
-                    { text: 'ThinkPHP', link: '/php/thinkphp', activeMatch: "/php/thinkphp" },
                     { text: 'Composer笔记', link: '/php/composer', activeMatch: "/php/composer" },
                 ]
             },
