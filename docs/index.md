@@ -28,15 +28,15 @@ features:
 
 在使用过程中有任何想法、合作交流，请加我微信 `siushin` （备注 <mark>小新博客</mark> ）：
 
-<img src="/src/微信二维码.jpg" alt="添加我微信备注「小新文档」" style="width: 180px;" />
+<img src="/src/siushin-WeChat.jpg" alt="添加我微信备注「小新博客」" style="width: 180px;" />
 
 ## ☕️ 打赏赞助
 
 如果你觉得这个博客内容对您有帮助，可以请作者喝一杯咖啡 ☕️
 
 <div class="coffee">
-<img src="/src/微信收款码.jpg" alt="微信收款码" style="width: 180px;" />
-<img src="/src/支付宝收款码.jpg" alt="支付宝收款码" style="width: 180px;" />
+<img src="/src/siushin-WechatPay.jpg" alt="微信收款码" style="width: 180px;" />
+<img src="/src/siushin-Alipay.jpg" alt="支付宝收款码" style="width: 180px;" />
 </div>
 
 <style>
