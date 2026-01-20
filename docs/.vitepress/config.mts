@@ -253,10 +253,10 @@ export default defineConfig({
             {
                 text: "开源项目",
                 items: [
-                    { text: "laravel-api", link: "https://github.com/siushin/laravel-api" },
+                    { text: "GPAdmin", link: "https://github.com/siushin/GPAdmin" },
+                    { text: "GPAdmin-api", link: "https://github.com/siushin/GPAdmin-api" },
                     { text: "laravel-tool", link: "https://github.com/siushin/laravel-tool" },
                     { text: "php-util", link: "https://github.com/siushin/php-util" },
-                    { text: "GPAdmin", link: "https://github.com/siushin/GPAdmin" },
                 ],
             }
         ],
