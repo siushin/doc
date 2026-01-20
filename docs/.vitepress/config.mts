@@ -232,6 +232,7 @@ export default defineConfig({
             {
                 text: '效率工具',
                 items: [
+                    { text: 'Mac使用技巧', link: '/software/mac', activeMatch: "/software/mac" },
                     { text: '影刀RPA', link: '/software/yingdao', activeMatch: "/software/yingdao" },
                     { text: '软件工具', link: '/software/app', activeMatch: "/software/app" },
                 ]
