@@ -114,12 +114,17 @@ export default defineConfig({
     lang: "zh-CN",
     vite: {
         server: {
-            // 允许访问的主机列表
             allowedHosts: ['www.siushin.com', 'localhost', '127.0.0.1'],
-            // 指定运行端口号（示例用 5173，你可以改成任意未被占用的端口）
             port: 5173,
-            // 可选：设置为 true 时，如果端口被占用会自动尝试下一个可用端口
-            strictPort: false
+            strictPort: true,
+            hmr: {
+                host: 'www.siushin.com',
+                protocol: 'wss',
+                clientPort: 443
+            },
+            fs: {
+                strict: false      // 允许 @fs 访问
+            }
         }
     },
     head: [
