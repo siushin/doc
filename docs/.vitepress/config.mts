@@ -1,6 +1,47 @@
 import { defineConfig } from 'vitepress'
+import path from 'path'
+import fs from 'fs'
+import { fileURLToPath } from 'url'
 // @ts-ignore
 import { defineTeekConfig } from 'vitepress-theme-teek/config'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+// 在 SSR 包代码中修补 createDynamicComponent：空 template 返回空组件，compile 抛错时也返回空组件
+function patchCreateDynamicComponentInCode(code) {
+    let out = code
+    // 1) 空值 guard：避免空字符串进入 compile
+    if (!out.includes('template.trim')) {
+        const guard = "if (template == null || typeof template !== 'string' || !template.trim()) { return defineComponent({ render: () => null }); } "
+        const patterns = [
+            [/(const createDynamicComponent\s*=\s*\(template\)\s*=>\s*\{\s*)(const\s*\{\s*code\s*\}\s*=\s*compile\s*\(template\))/g, '$1' + guard + '$2'],
+            [/(createDynamicComponent\s*=\s*function\s*\(template\)\s*\{\s*)(var\s*\{[^}]*code[^}]*\}\s*=\s*compile\s*\(template\))/g, '$1' + guard + '$2'],
+        ]
+        for (const [re, replacement] of patterns) {
+            out = out.replace(re, replacement)
+            if (out !== code) break
+        }
+    }
+    // 2) try/catch：非法 template（如不完整标签）导致 compile 抛 "Element is missing end tag" 时返回空组件
+    const tryCatchRe = /(\s+)(const\s*\{\s*code:\s*(\w+)\s*\}\s*=\s*(\w+)\.compile\(template\);)\s*(const\s+(\w+)\s*=\s*new Function\("Vue",\s*\3\)\(Vue\);)\s*(return defineComponent\(\{\s*render:\s*\6\s*}\);)/m
+    out = out.replace(tryCatchRe, (_, sp, line1, _codeVar, _compiler, line2, _renderVar, line3) =>
+        `${sp}try {${sp}  ${line1.trim()}${sp}  ${line2.trim()}${sp}  ${line3.trim()}${sp}} catch (e) {${sp}  return defineComponent({ render: () => null });${sp}}`)
+    return out
+}
+
+function teekCompilePatchTransform(code, id) {
+    if (!id.includes('vitepress-theme-teek')) return null
+    if (code.includes('template.trim')) return null // 已有补丁
+    const guardMjs = "if (template == null || typeof template !== 'string' || !template.trim()) { return defineComponent({ render: () => null }); }\n  "
+    const guardJs = "if (template == null || typeof template !== 'string' || !template.trim()) { return Vue.defineComponent({ render: () => null }); }\n    "
+    const mjsRe = /(const createDynamicComponent = \(template\) => \{\s*)(const \{ code \} = compile\(template\))/
+    const jsRe = /(const createDynamicComponent = \(template\) => \{\s*)(const \{ code \} = compilerDom\.compile\(template\))/
+    const outMjs = code.replace(mjsRe, '$1' + guardMjs + '$2')
+    if (outMjs !== code) return outMjs
+    const outJs = code.replace(jsRe, '$1' + guardJs + '$2')
+    if (outJs !== code) return outJs
+    return null
+}
 
 const description = [
     "欢迎来到 小新博客",
@@ -114,18 +155,55 @@ export default defineConfig({
     lang: "zh-CN",
     vite: {
         server: {
-            allowedHosts: ['www.siushin.com', 'localhost', '127.0.0.1'],
-            port: 5173,
-            strictPort: true,
-            hmr: {
-                host: 'www.siushin.com',
-                protocol: 'wss',
-                clientPort: 443
+            allowedHosts: ['www.siushin.com', 'localhost', '127.0.0.1']
+        },
+        build: {
+            chunkSizeWarningLimit: 1000,
+        },
+        optimizeDeps: {
+            exclude: ['vitepress-theme-teek'],
+        },
+        ssr: {
+            noExternal: ['vitepress-theme-teek'],
+        },
+        plugins: [
+            {
+                name: 'teek-compile-patch',
+                enforce: 'pre',
+                transform(code, id) {
+                    return teekCompilePatchTransform(code, id)
+                },
             },
-            fs: {
-                strict: false      // 允许 @fs 访问
-            }
-        }
+            {
+                name: 'teek-compile-patch-ssr-bundle',
+                apply: 'build',
+                generateBundle(_options, bundle) {
+                    for (const chunk of Object.values(bundle)) {
+                        if (chunk.type !== 'chunk' || !chunk.code) continue
+                        if (!chunk.code.includes('createDynamicComponent') || chunk.code.includes('template.trim')) continue
+                        const patched = patchCreateDynamicComponentInCode(chunk.code)
+                        if (patched !== chunk.code) chunk.code = patched
+                    }
+                },
+                closeBundle() {
+                    const candidates = [
+                        path.join(__dirname, '.temp', 'app.js'),
+                        path.join(__dirname, '..', '.temp', 'app.js'),
+                        path.join(process.cwd(), 'docs', '.temp', 'app.js'),
+                        path.join(process.cwd(), 'docs', '.vitepress', '.temp', 'app.js'),
+                    ]
+                    for (const appPath of candidates) {
+                        try {
+                            if (!fs.existsSync(appPath)) continue
+                            const code = fs.readFileSync(appPath, 'utf8')
+                            const patched = patchCreateDynamicComponentInCode(code)
+                            if (patched !== code) fs.writeFileSync(appPath, patched)
+                            break
+                        } catch (_) {}
+                    }
+                },
+            },
+        ],
     },
     head: [
         ["link", { rel: "icon", type: "image/png", href: "/src/pokemon.png" }],

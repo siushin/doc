@@ -5,3 +5,5 @@ permalink: /categories
 article: false
 layout: home
 ---
+
+<div></div>
