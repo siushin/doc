@@ -310,7 +310,7 @@ export default defineConfig({
             {
                 text: '技术笔记',
                 items: [
-                    { text: 'Redis笔记', link: '/redis/note', activeMatch: "/redis/note" },
+                    { text: 'Redis笔记', link: '/redis/command', activeMatch: "/redis/command" },
                     { text: 'Docker笔记', link: '/tech/docker', activeMatch: "/tech/docker" },
                     { text: 'Git文档', link: '/tech/git', activeMatch: "/tech/git" },
                     { text: 'MySQL笔记', link: '/tech/mysql', activeMatch: "/tech/mysql" },
