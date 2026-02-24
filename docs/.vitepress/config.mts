@@ -199,7 +199,7 @@ export default defineConfig({
                             const patched = patchCreateDynamicComponentInCode(code)
                             if (patched !== code) fs.writeFileSync(appPath, patched)
                             break
-                        } catch (_) {}
+                        } catch (_) { }
                     }
                 },
             },
@@ -310,11 +310,13 @@ export default defineConfig({
             {
                 text: '技术笔记',
                 items: [
-                    { text: 'Linux笔记', link: '/tech/linux', activeMatch: "/tech/linux" },
+                    { text: 'Redis笔记', link: '/redis/note', activeMatch: "/redis/note" },
                     { text: 'Docker笔记', link: '/tech/docker', activeMatch: "/tech/docker" },
                     { text: 'Git文档', link: '/tech/git', activeMatch: "/tech/git" },
                     { text: 'MySQL笔记', link: '/tech/mysql', activeMatch: "/tech/mysql" },
                     { text: 'Nginx笔记', link: '/tech/nginx', activeMatch: "/tech/nginx" },
+                    { text: 'Python笔记', link: '/python/intro', activeMatch: "/python/intro" },
+                    { text: 'Linux笔记', link: '/tech/linux', activeMatch: "/tech/linux" },
                 ]
             },
             {
