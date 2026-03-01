@@ -1,11 +1,14 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from "vitepress-plugin-mermaid"
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
+import { createRequire } from 'module'
 // @ts-ignore
 import { defineTeekConfig } from 'vitepress-theme-teek/config'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const require = createRequire(import.meta.url)
 
 // 在 SSR 包代码中修补 createDynamicComponent：空 template 返回空组件，compile 抛错时也返回空组件
 function patchCreateDynamicComponentInCode(code) {
@@ -146,7 +149,7 @@ const teekConfig = defineTeekConfig({
 })
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid(defineConfig({
     extends: teekConfig,
     title: "小新博客",
     description: "基于VitePress自动化构建",
@@ -160,11 +163,26 @@ export default defineConfig({
         build: {
             chunkSizeWarningLimit: 1000,
         },
+        resolve: {
+            alias: [
+                // 仅对裸的 dayjs 做别名，避免 dayjs/plugin/xxx 等子路径被错误替换；ESM 入口有 default 导出
+                {
+                    find: /^dayjs$/,
+                    replacement: path.join(path.dirname(require.resolve('dayjs/package.json')), 'esm', 'index.js'),
+                },
+                // @braintree/sanitize-url 为 CJS，在 ESM 下无命名导出 sanitizeUrl，用 CJS 垫片统一 re-export
+                {
+                    find: /^@braintree\/sanitize-url$/,
+                    replacement: path.join(__dirname, 'shim-sanitize-url.cjs'),
+                },
+            ],
+        },
         optimizeDeps: {
+            include: ['dayjs', '@braintree/sanitize-url'],
             exclude: ['vitepress-theme-teek'],
         },
         ssr: {
-            noExternal: ['vitepress-theme-teek'],
+            noExternal: ['vitepress-theme-teek', 'dayjs', '@braintree/sanitize-url'],
         },
         plugins: [
             {
@@ -359,4 +377,9 @@ export default defineConfig({
             provider: "local",
         },
     },
-})
+    // Mermaid 插件配置（可选，可自定义样式）
+    mermaid: {
+        theme: "default", // 主题：default/forest/dark/neutral
+        securityLevel: "loose"
+    }
+}))
