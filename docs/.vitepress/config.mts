@@ -297,8 +297,9 @@ export default withMermaid(defineConfig({
         },
         nav: [
             { text: '首页', link: '/' },
-            { text: 'AI笔记', link: '/ai/guide', activeMatch: "/ai/" },
-            { text: "Go笔记", link: "/go/intro", activeMatch: "/go/" },
+            { text: "❇️ Claude Code", link: "/claude-code", activeMatch: "/claude-code" },
+            { text: "🦞 OpenClaw", link: "/OpenClaw", activeMatch: "/OpenClaw" },
+            { text: 'AI笔记', link: '/ai', activeMatch: "/ai" },
             {
                 text: 'PHP笔记',
                 items: [
@@ -328,6 +329,7 @@ export default withMermaid(defineConfig({
             {
                 text: '技术笔记',
                 items: [
+                    { text: "Go笔记", link: "/go/intro", activeMatch: "/go/" },
                     { text: 'Redis笔记', link: '/redis/command', activeMatch: "/redis/command" },
                     { text: 'RabbitMQ笔记', link: '/rabbitmq/note', activeMatch: "/rabbitmq/note" },
                     { text: 'Docker笔记', link: '/tech/docker', activeMatch: "/tech/docker" },
